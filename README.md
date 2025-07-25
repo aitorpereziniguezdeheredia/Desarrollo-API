@@ -1,109 +1,111 @@
-# 🚀 API de Gestión de Empleados y Animales (FastAPI + SQLModel)
+proyecto:
+  nombre: "API de Gestión de Empleados y Animales"
+  descripcion: >
+    Este proyecto implementa una API RESTful usando FastAPI y SQLModel
+    que cumple con los requisitos académicos establecidos.
+  requisitos:
+    cumplidos:
+      - "2 recursos: /empleados (con CRUD completo) y /animales"
+      - "Filtros por path parameter y query parameter"
+      - "Persistencia con base de datos relacional (SQLite)"
+    opcional:
+      - "Autenticación y autorización con JWT (no incluido por defecto)"
+  tecnologias:
+    - FastAPI
+    - SQLModel
+    - SQLite
+    - Uvicorn
 
-Este proyecto implementa una API RESTful usando **FastAPI** y **SQLModel** que cumple con los siguientes requisitos:
+estructura:
+  - .venv/: "Entorno virtual local para dependencias (no subir al repositorio)"
+  - app/:
+      - controllers/: "Lógica de negocio (opcional)"
+      - models/: "Modelos SQLModel (Empleado, Animal)"
+      - database/: "Conexión y configuración de la base de datos"
+      - routes/:
+          - empleados.py: "CRUD completo para empleados"
+          - animales.py: "CRUD parcial para animales"
+      - main.py: "Punto de entrada de la aplicación FastAPI"
+  - tests/: "Tests unitarios (opcional)"
+  - .env: "Archivo de entorno (vacío, para configuración local)"
+  - .env.example: "Archivo de ejemplo de configuración"
+  - .gitignore: "Archivos y carpetas a ignorar por Git"
+  - requirements.txt: "Dependencias principales del proyecto"
+  - dev-requirements.txt: "Herramientas de desarrollo (Black, Pytest, Faker)"
+  - create.py: "Script de instalación y generación de estructura"
+  - README.md: "Documentación general del proyecto"
 
-## ✅ Requisitos del Trabajo
+instalacion:
+  paso_1:
+    titulo: "Crear entorno virtual"
+    comandos:
+      windows: "python -m venv .venv"
+      linux_mac: "python3 -m venv .venv"
+  paso_2:
+    titulo: "Activar entorno virtual"
+    comandos:
+      windows_powershell: ".\\.venv\\Scripts\\Activate.ps1"
+      windows_cmd: ".\\.venv\\Scripts\\activate.bat"
+      linux_mac: "source .venv/bin/activate"
+  paso_3:
+    titulo: "Ejecutar script de configuración"
+    comando: "python create.py"
+  paso_4:
+    titulo: "Ejecutar servidor"
+    comando: "uvicorn app.main:app --reload"
 
-- [x] 2 recursos: `/empleados` (con CRUD completo) y `/animales`
-- [x] Filtros por **path parameter** y **query parameter**
-- [x] Persistencia de datos con **base de datos relacional (SQLite)**
-- [ ] (Opcional) Autenticación y autorización con JWT *(no incluido por defecto, pero fácil de añadir)*
+documentacion:
+  urls:
+    swagger_ui: "http://127.0.0.1:8000/docs"
+    redoc_ui: "http://127.0.0.1:8000/redoc"
 
----
+endpoints:
+  empleados:
+    descripcion: "CRUD completo para la entidad empleados"
+    rutas:
+      - metodo: POST
+        path: "/empleados/"
+        descripcion: "Crear un nuevo empleado"
+      - metodo: GET
+        path: "/empleados/"
+        descripcion: "Listar todos los empleados"
+      - metodo: GET
+        path: "/empleados/{id}"
+        descripcion: "Obtener empleado por ID (path parameter)"
+      - metodo: GET
+        path: "/empleados?departamento=IT"
+        descripcion: "Filtrar empleados por departamento (query parameter)"
+      - metodo: PUT
+        path: "/empleados/{id}"
+        descripcion: "Actualizar un empleado existente"
+      - metodo: DELETE
+        path: "/empleados/{id}"
+        descripcion: "Eliminar un empleado"
+  animales:
+    descripcion: "CRUD parcial para la entidad animales"
+    rutas:
+      - metodo: GET
+        path: "/animales/"
+        descripcion: "Listar todos los animales"
 
-## 🏗️ Estructura del Proyecto
+autenticacion:
+  opcional: true
+  tecnologias:
+    - fastapi.security
+    - python-jose
+  descripcion: >
+    Se puede añadir autenticación con JWT para proteger rutas.
+    No está implementada por defecto pero puede agregarse fácilmente.
 
-app/
-├── controllers/ # (Opcional: lógica de negocio separada)
-├── models/ # Modelos SQLModel (Empleado, Animal)
-├── database/ # Conexión y setup de la base de datos
-├── routes/ # Endpoints de la API
-│ ├── empleados.py # CRUD completo
-│ └── animales.py # CRUD parcial
-├── main.py # Punto de entrada de FastAPI
-tests/ # Tests unitarios (opcional)
-.env # Variables de entorno vacías
-.env.example # Ejemplo de configuración
-.gitignore # Archivos y carpetas ignoradas por Git
-requirements.txt # Dependencias principales
-dev-requirements.txt # Herramientas de desarrollo (Black, Faker, Pytest)
-create.py # Script de generación de estructura y setup
+testing:
+  herramientas:
+    - pytest
+    - faker
+  descripcion: >
+    Se pueden crear pruebas unitarias en la carpeta 'tests' y utilizar Faker
+    para generar datos simulados durante los tests o desarrollo.
 
-yaml
-Copiar
-Editar
-
----
-
-## ⚙️ Tecnologías Usadas
-
-- **FastAPI** – Framework moderno y veloz para APIs
-- **SQLModel** – ORM moderno que combina Pydantic + SQLAlchemy
-- **SQLite** – Base de datos relacional ligera
-- **Uvicorn** – Servidor ASGI para desarrollo
-
----
-
-## 🚀 Instrucciones de Instalación y Ejecución
-
-### 1. Ejecutar el script de configuración
-
-Este script creará la estructura del proyecto, instalará las dependencias y generará archivos básicos:
-
-```bash
-python create.py
-Esto hará lo siguiente:
-
-Instalar dependencias (fastapi, sqlmodel, etc.)
-
-Crear estructura de carpetas
-
-Generar .env, .gitignore, requirements.txt, etc.
-
-2. Agregar el código fuente
-Luego del script, debes agregar los siguientes archivos dentro de:
-
-app/models/ – Modelos de empleados y animales
-
-app/routes/ – Endpoints CRUD
-
-app/database/ – Conexión a la base de datos
-
-app/main.py – Archivo principal de la app
-
-📌 Todos estos archivos están listos más abajo en esta documentación si deseas copiarlos directamente.
-
-🧪 Ejecutar la aplicación
-Una vez completado el código:
-
-bash
-Copiar
-Editar
-uvicorn app.main:app --reload
-La API estará disponible en: http://127.0.0.1:8000
-
-Acceder a la documentación interactiva:
-Swagger: http://127.0.0.1:8000/docs
-
-Redoc: http://127.0.0.1:8000/redoc
-
-🔍 Rutas disponibles
-/empleados (CRUD completo)
-Método	Ruta	Descripción
-POST	/empleados/	Crear un nuevo empleado
-GET	/empleados/	Listar todos los empleados
-GET	/empleados/{id}	Obtener empleado por ID (path parameter)
-GET	/empleados?departamento=IT	Filtrar por departamento (query param)
-PUT	/empleados/{id}	Actualizar un empleado
-DELETE	/empleados/{id}	Eliminar un empleado
-
-/animales (CRUD parcial)
-Método	Ruta	Descripción
-GET	/animales/	Listar todos los animales
-
-🛡️ (Opcional) Autenticación con JWT
-Puedes añadir autenticación para proteger endpoints. Usa paquetes como:
-
-python-jose – Para generar y verificar JWT
-
-fastapi.security – Para dependencias de seguridad
+autor:
+  nombre: "[Tu Nombre o Usuario]"
+  año: 2025
+  licencia: "Uso académico libre y personal"
