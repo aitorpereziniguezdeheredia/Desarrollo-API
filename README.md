@@ -20,7 +20,7 @@ Documentación Automática: Documentación interactiva de la API disponible en /
 
 ## 📂 Estructura del Proyecto
 El proyecto sigue una estructura modular para separar las responsabilidades y mantener el código limpio y escalable.
-
+```
 .
 ├── app/
 │   ├── __init__.py
@@ -41,6 +41,7 @@ El proyecto sigue una estructura modular para separar las responsabilidades y ma
 │       ├── producto_routes.py    # Endpoints para /productos
 │       └── usuario_routes.py     # Endpoints para /usuarios
 └── README.md                   # Este archivo
+```
 
 ---
 
