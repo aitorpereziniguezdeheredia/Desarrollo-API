@@ -1,111 +1,132 @@
-proyecto:
-  nombre: "API de Gestión de Empleados y Animales"
-  descripcion: >
-    Este proyecto implementa una API RESTful usando FastAPI y SQLModel
-    que cumple con los requisitos académicos establecidos.
-  requisitos:
-    cumplidos:
-      - "2 recursos: /empleados (con CRUD completo) y /animales"
-      - "Filtros por path parameter y query parameter"
-      - "Persistencia con base de datos relacional (SQLite)"
-    opcional:
-      - "Autenticación y autorización con JWT (no incluido por defecto)"
-  tecnologias:
-    - FastAPI
-    - SQLModel
-    - SQLite
-    - Uvicorn
+API de Productos con FastAPI y SQLModel
+Este proyecto es una API RESTful construida con Python utilizando el framework FastAPI y el ORM SQLModel. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Borrar) sobre un recurso de productos y listar usuarios. Utiliza una base de datos SQLite para simplificar la configuración y el despliegue.
 
-estructura:
-  - .venv/: "Entorno virtual local para dependencias (no subir al repositorio)"
-  - app/:
-      - controllers/: "Lógica de negocio (opcional)"
-      - models/: "Modelos SQLModel (Empleado, Animal)"
-      - database/: "Conexión y configuración de la base de datos"
-      - routes/:
-          - empleados.py: "CRUD completo para empleados"
-          - animales.py: "CRUD parcial para animales"
-      - main.py: "Punto de entrada de la aplicación FastAPI"
-  - tests/: "Tests unitarios (opcional)"
-  - .env: "Archivo de entorno (vacío, para configuración local)"
-  - .env.example: "Archivo de ejemplo de configuración"
-  - .gitignore: "Archivos y carpetas a ignorar por Git"
-  - requirements.txt: "Dependencias principales del proyecto"
-  - dev-requirements.txt: "Herramientas de desarrollo (Black, Pytest, Faker)"
-  - create.py: "Script de instalación y generación de estructura"
-  - README.md: "Documentación general del proyecto"
+✨ Características
+Framework Moderno: Construido sobre FastAPI, que ofrece un alto rendimiento y generación automática de documentación.
 
-instalacion:
-  paso_1:
-    titulo: "Crear entorno virtual"
-    comandos:
-      windows: "python -m venv .venv"
-      linux_mac: "python3 -m venv .venv"
-  paso_2:
-    titulo: "Activar entorno virtual"
-    comandos:
-      windows_powershell: ".\\.venv\\Scripts\\Activate.ps1"
-      windows_cmd: ".\\.venv\\Scripts\\activate.bat"
-      linux_mac: "source .venv/bin/activate"
-  paso_3:
-    titulo: "Ejecutar script de configuración"
-    comando: "python create.py"
-  paso_4:
-    titulo: "Ejecutar servidor"
-    comando: "uvicorn app.main:app --reload"
+ORM Intuitivo: Uso de SQLModel para una interacción sencilla y robusta con la base de datos, combinando Pydantic y SQLAlchemy.
 
-documentacion:
-  urls:
-    swagger_ui: "http://127.0.0.1:8000/docs"
-    redoc_ui: "http://127.0.0.1:8000/redoc"
+Operaciones CRUD completas para el recurso de productos.
 
-endpoints:
-  empleados:
-    descripcion: "CRUD completo para la entidad empleados"
-    rutas:
-      - metodo: POST
-        path: "/empleados/"
-        descripcion: "Crear un nuevo empleado"
-      - metodo: GET
-        path: "/empleados/"
-        descripcion: "Listar todos los empleados"
-      - metodo: GET
-        path: "/empleados/{id}"
-        descripcion: "Obtener empleado por ID (path parameter)"
-      - metodo: GET
-        path: "/empleados?departamento=IT"
-        descripcion: "Filtrar empleados por departamento (query parameter)"
-      - metodo: PUT
-        path: "/empleados/{id}"
-        descripcion: "Actualizar un empleado existente"
-      - metodo: DELETE
-        path: "/empleados/{id}"
-        descripcion: "Eliminar un empleado"
-  animales:
-    descripcion: "CRUD parcial para la entidad animales"
-    rutas:
-      - metodo: GET
-        path: "/animales/"
-        descripcion: "Listar todos los animales"
+Filtrado de datos: El endpoint de listar productos permite filtrar por stock mínimo.
 
-autenticacion:
-  opcional: true
-  tecnologias:
-    - fastapi.security
-    - python-jose
-  descripcion: >
-    Se puede añadir autenticación con JWT para proteger rutas.
-    No está implementada por defecto pero puede agregarse fácilmente.
+Estructura de Proyecto Organizada: El código está modularizado en controladores, modelos, rutas y configuración de base de datos para facilitar el mantenimiento.
 
-testing:
-  herramientas:
-    - pytest
-    - faker
-  descripcion: >
-    Se pueden crear pruebas unitarias en la carpeta 'tests' y utilizar Faker
-    para generar datos simulados durante los tests o desarrollo.
+Documentación Automática: Documentación interactiva de la API disponible en /docs (Swagger UI) y /redoc.
 
-autor:
-  nombre: "[Tu Nombre o Usuario]"
-  año: 2025
-  licencia: "Uso académico libre y personal"
+📂 Estructura del Proyecto
+El proyecto sigue una estructura modular para separar las responsabilidades y mantener el código limpio y escalable.
+
+.
+├── app/
+│   ├── __init__.py
+│   ├── main.py                 # Punto de entrada de la aplicación FastAPI
+│   ├── controllers/
+│   │   ├── __init__.py
+│   │   ├── producto_controller.py  # Lógica de negocio para productos
+│   │   └── usuario_controller.py   # Lógica de negocio para usuarios
+│   ├── database/
+│   │   ├── __init__.py
+│   │   └── connection.py         # Configuración y sesión de la base de datos
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── producto_model.py     # Modelo de datos para Producto
+│   │   └── usuario_model.py      # Modelo de datos para Usuario
+│   └── routes/
+│       ├── __init__.py
+│       ├── producto_routes.py    # Endpoints para /productos
+│       └── usuario_routes.py     # Endpoints para /usuarios
+└── README.md                   # Este archivo
+🛠️ Tecnologías Utilizadas
+Python 3.10+
+
+FastAPI: Framework web para construir APIs.
+
+SQLModel: ORM para interactuar con la base de datos.
+
+Uvicorn: Servidor ASGI para ejecutar la aplicación.
+
+SQLite: Motor de base de datos basado en ficheros.
+
+🚀 Instalación y Ejecución
+Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
+
+1. Prerrequisitos
+Asegúrate de tener instalado Python 3.10 o una versión superior.
+
+2. Clonar el Repositorio
+Si tienes el proyecto en un repositorio Git, clónalo. Si no, simplemente crea los archivos y directorios como se describió anteriormente.
+
+Bash
+
+git clone <URL_DEL_REPOSITORIO>
+cd <NOMBRE_DEL_DIRECTORIO>
+3. Crear un Entorno Virtual
+Es una buena práctica trabajar dentro de un entorno virtual para aislar las dependencias del proyecto.
+
+Bash
+
+# Crear el entorno virtual
+python -m venv venv
+
+# Activarlo (en Windows)
+.\venv\Scripts\activate
+
+# Activarlo (en macOS/Linux)
+source venv/bin/activate
+4. Instalar Dependencias
+Crea un archivo requirements.txt en la raíz del proyecto con el siguiente contenido:
+
+requirements.txt
+
+Plaintext
+
+fastapi
+uvicorn[standard]
+sqlmodel
+Luego, instala las dependencias usando pip:
+
+Bash
+
+pip install -r requirements.txt
+5. Ejecutar la Aplicación
+Una vez instaladas las dependencias, puedes iniciar el servidor de desarrollo desde el directorio raíz del proyecto.
+
+Bash
+
+fastapi dev app/main.py
+app.main: se refiere al archivo main.py dentro del directorio app.
+
+app: es la instancia de FastAPI creada dentro de main.py.
+
+--reload: reinicia el servidor automáticamente cada vez que detecta un cambio en el código.
+
+La API estará disponible en http://127.0.0.1:8000 y en http://127.0.0.1:8000/docs.
+
+📖 Documentación de la API
+FastAPI genera automáticamente la documentación interactiva de la API. Una vez que el servidor esté en ejecución, puedes acceder a ella en las siguientes URLs:
+
+Swagger UI: http://127.0.0.1:8000/docs
+
+ReDoc: http://127.0.0.1:8000/redoc
+
+Desde Swagger UI, puedes ver todos los endpoints, sus parámetros, y probarlos directamente desde el navegador.
+
+🔀 Endpoints de la API
+Aquí se detallan todos los endpoints disponibles.
+
+Productos (/productos)
+Método	Ruta	Descripción	Body (Ejemplo)	Respuesta Exitosa (Ejemplo)
+POST	/	Crea un nuevo producto.	{"nombre": "Laptop Pro", "precio": 1200.50, "stock": 50}	201 Created con el objeto del producto creado.
+GET	/	Obtiene una lista de todos los productos.	-	200 OK con un array de productos.
+GET	/?stock_minimo=10	Obtiene productos con stock mayor o igual al valor.	-	200 OK con un array de productos filtrados.
+GET	/{producto_id}	Obtiene un producto por su ID.	-	200 OK con el objeto del producto.
+PUT	/{producto_id}	Actualiza un producto existente por su ID.	{"precio": 1150.00, "stock": 45}	200 OK con el objeto del producto actualizado.
+DELETE	/{producto_id}	Elimina un producto por su ID.	-	200 OK con el objeto del producto eliminado.
+
+Exportar a Hojas de cálculo
+Nota: Para los endpoints que reciben un producto_id, se devolverá un 404 Not Found si el producto no existe.
+
+Usuarios (/usuarios)
+Método	Ruta	Descripción	Respuesta Exitosa (Ejemplo)
+GET	/	Obtiene una lista de todos los usuarios.	200 OK con un array de usuarios.
