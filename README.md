@@ -1,7 +1,9 @@
-API de Productos con FastAPI y SQLModel
+# API de Productos con FastAPI y SQLModel
 Este proyecto es una API RESTful construida con Python utilizando el framework FastAPI y el ORM SQLModel. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Borrar) sobre un recurso de productos y listar usuarios. Utiliza una base de datos SQLite para simplificar la configuración y el despliegue.
 
-✨ Características
+---
+
+## ✨ Características
 Framework Moderno: Construido sobre FastAPI, que ofrece un alto rendimiento y generación automática de documentación.
 
 ORM Intuitivo: Uso de SQLModel para una interacción sencilla y robusta con la base de datos, combinando Pydantic y SQLAlchemy.
@@ -14,7 +16,9 @@ Estructura de Proyecto Organizada: El código está modularizado en controladore
 
 Documentación Automática: Documentación interactiva de la API disponible en /docs (Swagger UI) y /redoc.
 
-📂 Estructura del Proyecto
+---
+
+## 📂 Estructura del Proyecto
 El proyecto sigue una estructura modular para separar las responsabilidades y mantener el código limpio y escalable.
 
 .
@@ -37,7 +41,10 @@ El proyecto sigue una estructura modular para separar las responsabilidades y ma
 │       ├── producto_routes.py    # Endpoints para /productos
 │       └── usuario_routes.py     # Endpoints para /usuarios
 └── README.md                   # Este archivo
-🛠️ Tecnologías Utilizadas
+
+---
+
+## 🛠️ Tecnologías Utilizadas
 Python 3.10+
 
 FastAPI: Framework web para construir APIs.
@@ -48,7 +55,9 @@ Uvicorn: Servidor ASGI para ejecutar la aplicación.
 
 SQLite: Motor de base de datos basado en ficheros.
 
-🚀 Instalación y Ejecución
+---
+
+## 🚀 Instalación y Ejecución
 Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
 
 1. Prerrequisitos
@@ -66,13 +75,13 @@ Es una buena práctica trabajar dentro de un entorno virtual para aislar las dep
 
 Bash
 
-# Crear el entorno virtual
+### Crear el entorno virtual
 python -m venv venv
 
-# Activarlo (en Windows)
+### Activarlo (en Windows)
 .\venv\Scripts\activate
 
-# Activarlo (en macOS/Linux)
+### Activarlo (en macOS/Linux)
 source venv/bin/activate
 4. Instalar Dependencias
 Crea un archivo requirements.txt en la raíz del proyecto con el siguiente contenido:
@@ -103,7 +112,9 @@ app: es la instancia de FastAPI creada dentro de main.py.
 
 La API estará disponible en http://127.0.0.1:8000 y en http://127.0.0.1:8000/docs.
 
-📖 Documentación de la API
+---
+
+## 📖 Documentación de la API
 FastAPI genera automáticamente la documentación interactiva de la API. Una vez que el servidor esté en ejecución, puedes acceder a ella en las siguientes URLs:
 
 Swagger UI: http://127.0.0.1:8000/docs
@@ -112,7 +123,9 @@ ReDoc: http://127.0.0.1:8000/redoc
 
 Desde Swagger UI, puedes ver todos los endpoints, sus parámetros, y probarlos directamente desde el navegador.
 
-🔀 Endpoints de la API
+---
+
+## 🔀 Endpoints de la API
 Aquí se detallan todos los endpoints disponibles.
 
 Productos (/productos)
