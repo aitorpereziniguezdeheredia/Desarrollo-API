@@ -69,43 +69,43 @@ Si tienes el proyecto en un repositorio Git, clónalo. Si no, simplemente crea l
 
 Bash
 
+```
 git clone <URL_DEL_REPOSITORIO>
 cd <NOMBRE_DEL_DIRECTORIO>
+```
 3. Crear un Entorno Virtual
 Es una buena práctica trabajar dentro de un entorno virtual para aislar las dependencias del proyecto.
 
-Bash
-
 ### Crear el entorno virtual
-python -m venv venv
+```
+python -m venv .venv
+```
 
 ### Activarlo (en Windows)
-.\venv\Scripts\activate
 
-### Activarlo (en macOS/Linux)
-source venv/bin/activate
+source .venv/Scriptsa/activate
+
 4. Instalar Dependencias
 Crea un archivo requirements.txt en la raíz del proyecto con el siguiente contenido:
 
 requirements.txt
 
-Plaintext
-
-fastapi
-uvicorn[standard]
+fastapi[standard]
 sqlmodel
+
 Luego, instala las dependencias usando pip:
 
-Bash
-
+```
 pip install -r requirements.txt
+```
 5. Ejecutar la Aplicación
 Una vez instaladas las dependencias, puedes iniciar el servidor de desarrollo desde el directorio raíz del proyecto.
 
-Bash
-
+```
 fastapi dev app/main.py
-app.main: se refiere al archivo main.py dentro del directorio app.
+```
+
+app/main: se refiere al archivo main.py dentro del directorio app.
 
 app: es la instancia de FastAPI creada dentro de main.py.
 
@@ -130,17 +130,24 @@ Desde Swagger UI, puedes ver todos los endpoints, sus parámetros, y probarlos d
 Aquí se detallan todos los endpoints disponibles.
 
 Productos (/productos)
+
 Método	Ruta	Descripción	Body (Ejemplo)	Respuesta Exitosa (Ejemplo)
+
+```
 POST	/	Crea un nuevo producto.	{"nombre": "Laptop Pro", "precio": 1200.50, "stock": 50}	201 Created con el objeto del producto creado.
 GET	/	Obtiene una lista de todos los productos.	-	200 OK con un array de productos.
 GET	/?stock_minimo=10	Obtiene productos con stock mayor o igual al valor.	-	200 OK con un array de productos filtrados.
 GET	/{producto_id}	Obtiene un producto por su ID.	-	200 OK con el objeto del producto.
 PUT	/{producto_id}	Actualiza un producto existente por su ID.	{"precio": 1150.00, "stock": 45}	200 OK con el objeto del producto actualizado.
 DELETE	/{producto_id}	Elimina un producto por su ID.	-	200 OK con el objeto del producto eliminado.
+```
 
-Exportar a Hojas de cálculo
 Nota: Para los endpoints que reciben un producto_id, se devolverá un 404 Not Found si el producto no existe.
 
 Usuarios (/usuarios)
+
 Método	Ruta	Descripción	Respuesta Exitosa (Ejemplo)
+
+```
 GET	/	Obtiene una lista de todos los usuarios.	200 OK con un array de usuarios.
+```

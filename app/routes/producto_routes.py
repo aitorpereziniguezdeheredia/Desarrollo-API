@@ -5,7 +5,8 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session
 
 from app.database.connection import get_session
-from app.models.producto_model import Producto
+# Importamos los modelos necesarios
+from app.models.producto_model import Producto, ProductoCreate, ProductoUpdate
 from app.controllers import producto_controller
 
 router = APIRouter(
@@ -14,10 +15,11 @@ router = APIRouter(
     responses={404: {"description": "No encontrado"}},
 )
 
+# 👇 CAMBIO AQUÍ: Usamos ProductoCreate para el body de la petición
 @router.post("/", response_model=Producto, status_code=status.HTTP_201_CREATED)
-def create_new_product(producto: Producto, session: Session = Depends(get_session)):
-    """Crea un nuevo producto."""
-    return producto_controller.create_product(producto=producto, session=session)
+def create_new_product(producto: ProductoCreate, session: Session = Depends(get_session)):
+    """Crea un nuevo producto. El ID es autogenerado."""
+    return producto_controller.create_product(producto_create=producto, session=session)
 
 
 @router.get("/", response_model=List[Producto])
@@ -35,8 +37,9 @@ def read_product_by_id(producto_id: int, session: Session = Depends(get_session)
     return producto
 
 
+# 👇 CAMBIO AQUÍ: Usamos ProductoUpdate para el body de la petición
 @router.put("/{producto_id}", response_model=Producto)
-def update_existing_product(producto_id: int, producto: Producto, session: Session = Depends(get_session)):
+def update_existing_product(producto_id: int, producto: ProductoUpdate, session: Session = Depends(get_session)):
     """Actualiza un producto existente."""
     updated_producto = producto_controller.update_product(producto_id=producto_id, producto_update=producto, session=session)
     if not updated_producto:

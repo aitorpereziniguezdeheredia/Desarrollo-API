@@ -2,14 +2,19 @@
 
 from typing import List, Optional
 from sqlmodel import Session, select
-from app.models.producto_model import Producto
+# Importamos los nuevos modelos
+from app.models.producto_model import Producto, ProductoCreate, ProductoUpdate 
 
-def create_product(producto: Producto, session: Session) -> Producto:
+# La función ahora espera un objeto del tipo ProductoCreate
+def create_product(producto_create: ProductoCreate, session: Session) -> Producto:
     """Crea un nuevo producto en la base de datos."""
-    session.add(producto)
+    # Convertimos el modelo de creación al modelo de tabla
+    db_producto = Producto.model_validate(producto_create)
+    
+    session.add(db_producto)
     session.commit()
-    session.refresh(producto)
-    return producto
+    session.refresh(db_producto)
+    return db_producto
 
 def get_all_products(stock_minimo: Optional[int], session: Session) -> List[Producto]:
     """Obtiene todos los productos, con un filtro opcional por stock mínimo."""
@@ -25,13 +30,14 @@ def get_product_by_id(producto_id: int, session: Session) -> Optional[Producto]:
     producto = session.get(Producto, producto_id)
     return producto
 
-def update_product(producto_id: int, producto_update: Producto, session: Session) -> Optional[Producto]:
+# La función ahora espera un objeto del tipo ProductoUpdate
+def update_product(producto_id: int, producto_update: ProductoUpdate, session: Session) -> Optional[Producto]:
     """Actualiza un producto existente en la base de datos."""
     db_producto = session.get(Producto, producto_id)
     if not db_producto:
         return None
     
-    # Obtenemos los datos del producto a actualizar, excluyendo los no establecidos
+    # Obtenemos los datos del producto a actualizar, excluyendo los no establecidos (None)
     producto_data = producto_update.model_dump(exclude_unset=True)
     
     for key, value in producto_data.items():
@@ -50,5 +56,4 @@ def delete_product(producto_id: int, session: Session) -> Optional[Producto]:
         
     session.delete(producto)
     session.commit()
-    # Retornamos el objeto eliminado (ya no está en la DB, pero lo tenemos en memoria)
     return producto
